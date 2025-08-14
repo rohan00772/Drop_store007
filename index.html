@@ -1,149 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Store</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background: #fff;
-    }
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px;
-        background: #222;
-        color: white;
-    }
-    .menu {
-        font-size: 20px;
-        cursor: pointer;
-    }
-    .dropdown {
-        display: none;
-        position: absolute;
-        right: 10px;
-        top: 50px;
-        background: white;
-        border: 1px solid #ccc;
-        padding: 10px;
-    }
-    .dropdown a {
-        text-decoration: none;
-        color: black;
-        display: block;
-        padding: 5px;
-    }
-    .product-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 15px;
-        padding: 15px;
-    }
-    .product {
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        overflow: hidden;
-        background: white;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        text-align: center;
-        cursor: pointer;
-        transition: transform 0.2s;
-    }
-    .product:hover {
-        transform: scale(1.02);
-    }
-    .product img {
-        width: 100%;
-        height: 150px;
-        object-fit: cover;
-    }
-    .form-container {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0,0,0,0.6);
-        justify-content: center;
-        align-items: center;
-    }
-    .form-box {
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        width: 300px;
-    }
-    .form-box input, .form-box select, .form-box button {
-        width: 100%;
-        padding: 10px;
-        margin: 5px 0;
-    }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Order Now</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:20px; background:#f0f4f8; }
+    .form-box { max-width:400px; margin:50px auto; background:#fff; padding:20px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
+    label { display:block; margin-top:12px; font-size:14px; color:#333; }
+    input, select, textarea, button { width:100%; padding:10px; margin-top:6px; border-radius:8px; border:1px solid #ccc; font-size:14px; }
+    button { background:#28a745; color:#fff; border:none; font-weight:600; cursor:pointer; margin-top:15px; }
+  </style>
 </head>
 <body>
 
-<header>
-    <h2>My Store</h2>
-    <div class="menu" onclick="toggleMenu()">⋮</div>
-    <div class="dropdown" id="dropdown">
-        <a href="https://www.instagram.com/rohan_927_" target="_blank">Contact Us</a>
-    </div>
-</header>
-
-<div class="product-grid">
-    <div class="product" onclick="openForm('Product 1', '₹500')">
-        <img src="https://via.placeholder.com/200x150" alt="">
-        <h3>Product 1</h3>
-        <p>₹500</p>
-    </div>
-    <div class="product" onclick="openForm('Product 2', '₹700')">
-        <img src="https://via.placeholder.com/200x150" alt="">
-        <h3>Product 2</h3>
-        <p>₹700</p>
-    </div>
+<div class="form-box">
+  <h2>Place Your Order</h2>
+  <form action="https://docs.google.com/forms/d/e/1FAIpQLSdp1B4dvifeNRV9RdERvTPBtuNG1Iyf7i6pWjJcTHhQuU2XzA/formResponse" method="POST" target="_blank">
+    <label>Full Name</label>
+    <input type="text" name="entry.17246546" placeholder="Enter your name" required>
+    
+    <label>Phone Number</label>
+    <input type="tel" name="entry.1894479152" placeholder="Enter your phone number" required>
+    
+    <label>Delivery Address</label>
+    <textarea name="entry.866177611" placeholder="Your delivery address" rows="3" required></textarea>
+    
+    <label>Additional Info</label>
+    <input type="text" name="entry.1615894872" placeholder="Email or other details">
+    
+    <label>City/Pincode</label>
+    <input type="text" name="entry.255371178" placeholder="City, State or Pincode">
+    
+    <label>Payment Method</label>
+    <select name="entry.1676115414" required>
+      <option value="">Select payment method</option>
+      <option value="Cash on delivery">Cash on delivery</option>
+      <option value="UPI">UPI</option>
+      <option value="Card">Card</option>
+    </select>
+    
+    <label>Product</label>
+    <input type="text" name="entry.368211875" placeholder="Product name" required>
+    
+    <input type="hidden" name="entry.1056087827" value="₹499"> <!-- Price can be dynamic -->
+    
+    <button type="submit">Submit Order</button>
+  </form>
 </div>
-
-<div class="form-container" id="orderForm">
-    <div class="form-box">
-        <h3>Order Now</h3>
-        <form action="https://docs.google.com/forms/d/e/1FAIpQLSdp1B4dvifeNRV9RdERvTPBtuNG1Iyf7i6pWjJcTHhQuU2XzA/formResponse" method="POST" target="_blank">
-            <input type="text" name="entry.123456789" placeholder="Your Name" required>
-            <input type="text" name="entry.987654321" placeholder="Address" required>
-            <input type="tel" name="entry.111213141" placeholder="Phone Number" required>
-            <input type="date" name="entry.121314151" required>
-            <select name="entry.161718192" required>
-                <option value="">Payment Method</option>
-                <option value="COD">Cash on Delivery</option>
-                <option value="UPI">UPI</option>
-                <option value="Card">Card</option>
-            </select>
-            <input type="hidden" id="productName" name="entry.222324252">
-            <input type="hidden" id="productPrice" name="entry.262728293">
-            <button type="submit">Submit</button>
-        </form>
-        <button onclick="closeForm()">Close</button>
-    </div>
-</div>
-
-<script>
-function toggleMenu(){
-    document.getElementById("dropdown").style.display =
-        document.getElementById("dropdown").style.display === "block" ? "none" : "block";
-}
-function openForm(product, price){
-    document.getElementById("orderForm").style.display = "flex";
-    document.getElementById("productName").value = product;
-    document.getElementById("productPrice").value = price;
-}
-function closeForm(){
-    document.getElementById("orderForm").style.display = "none";
-}
-</script>
 
 </body>
 </html>
